@@ -1,0 +1,2 @@
+# Javascript Summary Record
+## EcmaScript
