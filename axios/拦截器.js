@@ -119,28 +119,3 @@ Promise.all(p).then(res => {
     console.log('all', res)
 })
 
-// modules = {}
-// define
-
-function define(name,arr,fn){
-    let modules = {}
-    for(let i=0;i<arr.length;i++){
-        fn.apply(fn,arr)
-    }
-    modules[name] = fn
-    console.log('modules', modules)
-}
-
-define('b',[],function (){
-    function bb(){
-        return 'bb'
-    }
-    return {
-        bb
-    }
-})
-
-define('a',['b'],function (b){
-    console.log('aa', b)
-})
-
