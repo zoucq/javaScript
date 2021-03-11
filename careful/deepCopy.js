@@ -1,5 +1,5 @@
 
-const {isObject, isArray} = require('./index.js')
+const {isObject, isArray} = require('./util.js')
 
 function deepCopy(obj){
     if(!isObject(obj) || !isArray(obj)) return obj
