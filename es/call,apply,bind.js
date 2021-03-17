@@ -52,3 +52,28 @@ say.myApply(null, ['test3'])
 say.myApply(undefined, ['test4'])
 say.myApply('', ['test5'])
 
+
+Function.prototype.myBind = function (ctx) {
+    if(typeof this !== 'function'){
+        return throw new Error('must be function')
+    }
+    return (...args) => {
+        this.apply(ctx, args)
+    }
+}
+
+Function.prototype.myBind2 = function (ctx, ...argument) {
+    if(typeof this !== 'function'){
+        return throw new Error('must be function')
+    }
+
+    let Noop = () => {}
+
+    let handle = (...args) => {
+        this.apply(this instanceof Noop ? this : ctx, argument.concat(args))
+    }
+    Noop.prototype = this.prototype
+    handle.prototype = new Noop()
+
+    return handle
+}
