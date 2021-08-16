@@ -1,0 +1,46 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            margin: 30px;
+            border: 1px solid red;
+            position: relative;
+        }
+        .test{
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+            width: 30px;
+            height: 30px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="test"></div>
+    </div>
+
+    <script>
+
+        let box = document.querySelector('.box')
+        let test = document.querySelector('.test')
+        box.addEventListener('mousemove', (e) => {
+            console.log(e, box.offsetWidth, box.offsetHeight)
+            const {clientX, clientY} = e
+            test.style.left = clientX + 'px'
+            test.style.top = clientY + 'px'
+            test.style.display = 'block'
+        })
+
+    </script>
+</body>
+</html>
