@@ -1,0 +1,62 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .outer{
+            position:relative;
+            z-index:1;
+            height: 200px;
+            width: 200px;
+            background: rgba(0,0,0,0.7);
+        }
+        .inner:after{
+            content:'';
+            position:absolute;
+            top: 0;right: 0;left: 0;bottom: 0;
+            z-index:2;
+            filter:blur(5px);
+            background: rgba(255,255,255,0.9);
+        }
+        .inner:before{
+            content:'';
+            position:absolute;
+            top: 0;right: 0;left: 0;bottom: 0;
+            z-index:-1;
+            background: rgba(255,255,255,0.9);
+        }
+        .inner{
+            position:absolute;
+            top: 0;right: 0;left: 0;bottom: 0;
+            height: 160px;
+            width: 160px;
+            margin:auto;
+            background: hsla(0,0%,100%,.8);
+        }
+        .text{
+            position:absolute;
+            z-index:3;
+            font-size: 18px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="outer">
+        阿世界上的讲话阿快就阿几句话就哈几句话就会在杀鸡儆猴就哈几就哈几哈几
+        阿世界上的讲话阿快就阿几句话就哈几句话就会在杀鸡儆猴就哈几就哈几哈几
+        阿世界上的讲话阿快就阿几句话就哈几句话就会在杀鸡儆猴就哈几就哈几哈几
+        <div class="inner">
+            <div class="text">
+                前端入门容易精通难，说的是前端，更指javascript
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
