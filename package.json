@@ -1,4 +1,10 @@
 {
+  "name": "javascript-study",
+  "version": "0.0.1",
+  "auth": "zcq",
+  "bugs": {
+    "email": "18720757402@163.com"
+  },
   "dependencies": {
     "@babel/core": "^7.15.8",
     "@babel/parser": "^7.15.8",
