@@ -6,7 +6,7 @@
   "scripts": {
     "test": "promises-aplus-tests 手写promise.js"
   },
-  "author": "",
+  "author": "zcq",
   "license": "ISC",
   "devDependencies": {
     "promises-aplus-tests": "^2.1.2"
