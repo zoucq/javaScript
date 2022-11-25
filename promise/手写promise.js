@@ -25,8 +25,12 @@ class MyPromise {
     }
 
     resolve (value) {
-        // console.log('resolve params', value);
+        // 避免调用多次resolve
         if(this.status === PENDING){
+            // console.log('resolve params', value);
+            // 实践中要确保 onFulfilled 和 onRejected 方法异步执行，且应该在 then 方法被调用的那一轮事件循环之后的新执行栈中执行。
+            // 这个事件队列可以采用“宏任务（macro-task）”机制，比如setTimeout 或者 setImmediate；
+            // 也可以采用“微任务（micro-task）”机制来实现， 比如 MutationObserver 或者process.nextTick。
             setTimeout(() => {
                 this.status = FULFILLED
                 this.value = value
@@ -36,8 +40,9 @@ class MyPromise {
     }
 
     reject (reason) {
-        // console.log('reject params', value);
+        // 避免调用多次reject
         if(this.status === PENDING) {
+            // console.log('reject params', value);
             setTimeout(() => {
                 this.status = REJECTED
                 this.reason = reason
@@ -51,6 +56,7 @@ class MyPromise {
         onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
         onRejected = typeof onRejected === 'function' ? onRejected : reason => {throw reason}
 
+        // 返回promise，后续链式调用
         let promise2 = new MyPromise((resolve, reject) => {
             if(this.status === FULFILLED){
                 setTimeout(() => {
@@ -98,10 +104,12 @@ class MyPromise {
 }
 
 function resolvePromise (promise2, x, resolve, reject) {
+    // 2.3.1规范 如果 promise 和 x 指向同一对象，以 TypeError 为据因拒绝执行 promise
     if(x === promise2){
         return reject(new TypeError('Chaining cycle detected for promise'))
     }
 
+    // 2.3.2规范 如果 x 为 Promise ，则使 promise2 接受 x 的状态
     if(x instanceof MyPromise){
         if(x.status === PENDING){
             x.then(y => {
@@ -113,6 +121,7 @@ function resolvePromise (promise2, x, resolve, reject) {
             reject(x.reason)
         }
     }else if(x !== null && ['object', 'function'].includes(typeof x)){
+        // 2.3.3 如果 x 为对象或函数
         try {
             // 2.3.3.1 把 x.then 赋值给 then
             var then = x.then;
@@ -188,6 +197,7 @@ function resolvePromise (promise2, x, resolve, reject) {
 //     console.log('rejected222', reason);
 // })
 
+// promises-aplus-tests 测试需要的方法
 MyPromise.deferred = function () {
       let result = {};
       result.promise = new MyPromise((resolve, reject) => {
