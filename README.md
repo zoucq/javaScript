@@ -4,7 +4,7 @@
     + new实现
     + instanceof实现
     + call,apply,bind实现
-    + careful tools
+    + careful tools方法 深拷贝、节流防抖、科里化
     
 ### promise
     + 手写promise符合promiseA+规范实现
