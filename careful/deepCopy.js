@@ -6,7 +6,7 @@ function deepCopy(obj){
     let res = isObject(obj) ? {} : []
     for(let k in obj){
         if(isObject(obj) || isArray(obj)){
-            res[k] = copy(obj[k])
+            res[k] = deepCopy(obj[k])
         }else{
             res[k] = obj[k]
         }
