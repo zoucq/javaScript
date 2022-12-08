@@ -18,7 +18,9 @@
     + 核心原理实现
     
 ### vue
+    + observe
     + dep解析
+    + watcher
     
 ### axios
     + 拦截器实现
